@@ -1,11 +1,13 @@
-
 import React, { useEffect, useState } from "react";
-import App from "./App";
+import { useParams } from "react-router-dom";
 
-const Wetter = ({ city }) => {
-    const [weather, setWeather] = useState(null);
+const Wetter = () => {
+  const { city } = useParams();
+  const [weather, setWeather] = useState(null);
 
   useEffect(() => {
+    console.log(`Aktuelle Stadt: ${city}`);
+
     const fetchWeather = async () => {
       try {
         const response = await fetch(`https://wttr.in/${city}?format=j1`);
@@ -21,7 +23,9 @@ const Wetter = ({ city }) => {
 
   if (!weather) return <p>Wetter wird geladen...</p>;
 
-  const current = weather.current_condition[0];
+  const current = weather?.current_condition?.[0];
+
+  if (!current) return <p>Fehler beim Abrufen der Wetterdaten.</p>;
 
   return (
     <div>
