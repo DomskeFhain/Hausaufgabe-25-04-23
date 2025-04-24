@@ -8,7 +8,7 @@ const Wetter = ({ city }) => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const response = await fetch(`https://wttr.in/berlin?format=j1`);
+        const response = await fetch(`https://wttr.in/${city}?format=j1`);
         const data = await response.json();
         setWeather(data);
       } catch (error) {
@@ -25,8 +25,7 @@ const Wetter = ({ city }) => {
 
   return (
     <div>
-        <App></App>
-      <h2>Wetter in Berlin</h2>
+      <h2>Wetter in {city}</h2>
       <p>{current.weatherDesc[0].value}</p>
       <p>🌡 {current.temp_C}°C</p>
       <p>💨 Wind: {current.windspeedKmph} km/h</p>

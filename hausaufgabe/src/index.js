@@ -5,6 +5,7 @@ import App from './App';
 import Datum from './Datum';
 import Wetter from './Wetter';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import StadtAuswahl from './StadtAuswahl';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,8 @@ root.render(
       <Routes>
         <Route path="/" element={<App></App>}></Route>
         <Route path="/datum" element={<Datum></Datum>}></Route>
-        <Route path="/wetter" element={<Wetter></Wetter>}></Route>
+        <Route path="/wetter" element={<StadtAuswahl></StadtAuswahl>}></Route>
+        <Route path="wetter/:city" element={<Wetter></Wetter>}></Route>
       </Routes>
     </Router>
   </React.StrictMode>
